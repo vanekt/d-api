@@ -1,11 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"github.com/kataras/iris"
 	"os"
 )
 
 func main() {
-	host := os.Getenv("SITEHOST")
-	fmt.Printf("host: %s", host)
+	app := iris.Default()
+	app.Get("/ping", func(ctx iris.Context) {
+		ctx.JSON(iris.Map{
+			"message": "pong",
+		})
+	})
+	port := os.Getenv("PORT")
+	app.Run(iris.Addr(":" + port))
 }
