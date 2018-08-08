@@ -1,17 +1,15 @@
 package main
 
 import (
-	"github.com/kataras/iris"
+	"github.com/gin-gonic/gin"
 	"os"
 )
 
 func main() {
-	app := iris.Default()
-	app.Get("/ping", func(ctx iris.Context) {
-		ctx.JSON(iris.Map{
-			"message": "pong",
-		})
-	})
 	port := os.Getenv("PORT")
-	app.Run(iris.Addr(":" + port))
+
+	r := gin.Default()
+	configureRouter(r)
+
+	r.Run(":" + port)
 }

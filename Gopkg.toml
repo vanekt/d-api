@@ -30,5 +30,5 @@
   unused-packages = true
 
 [[constraint]]
-  name = "github.com/kataras/iris"
-  version = "10.6.7"
+  name = "github.com/gin-gonic/gin"
+  version = "1.2.0"
