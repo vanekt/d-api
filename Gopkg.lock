@@ -38,14 +38,6 @@
   version = "v1.1.0"
 
 [[projects]]
-  branch = "v2"
-  digest = "1:ff6b0586c0621a76832cf783eee58cbb9d9795d2ce8acbc199a4131db11c42a9"
-  name = "github.com/iris-contrib/go.uuid"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "36e9d2ebbde5e3f13ab2e25625fd453271d6522e"
-
-[[projects]]
   branch = "master"
   digest = "1:7654989089e5bd5b6734ec3be8b695e87d3f1f8d95620b343fd7d3995a5b60d7"
   name = "github.com/jmoiron/sqlx"
@@ -57,14 +49,6 @@
   revision = "0dae4fefe7c0e190f7b5a78dac28a1c82cc8d849"
 
 [[projects]]
-  digest = "1:414a93ba7349067b7f411ab5f4227e86c87f9c5eaddc01a819b1bb620e508026"
-  name = "github.com/kataras/iris"
-  packages = ["core/errors"]
-  pruneopts = "UT"
-  revision = "2a08a0f1f7162b9e662d5ffdc28bc27376259453"
-  version = "v10.6.7"
-
-[[projects]]
   digest = "1:d4d17353dbd05cb52a2a52b7fe1771883b682806f68db442b436294926bbfafb"
   name = "github.com/mattn/go-isatty"
   packages = ["."]
@@ -73,12 +57,11 @@
   version = "v0.0.3"
 
 [[projects]]
-  digest = "1:5b3b29ce0e569f62935d9541dff2e16cc09df981ebde48e82259076a73a3d0c7"
+  digest = "1:41f3b549dbb8216e490c27926c09dc055aa509b3476e7cbc3317103990b13aeb"
   name = "github.com/op/go-logging"
   packages = ["."]
   pruneopts = "UT"
-  revision = "b2cb9fa56473e98db8caba80237377e83fe44db5"
-  version = "v1"
+  revision = "970db520ece77730c7e4724c61121037378659d9"
 
 [[projects]]
   digest = "1:03aa6e485e528acb119fb32901cf99582c380225fc7d5a02758e08b180cb56c3"
@@ -127,7 +110,6 @@
     "github.com/gin-gonic/gin",
     "github.com/go-sql-driver/mysql",
     "github.com/jmoiron/sqlx",
-    "github.com/kataras/iris/core/errors",
     "github.com/op/go-logging",
   ]
   solver-name = "gps-cdcl"
