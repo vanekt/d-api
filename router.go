@@ -1,40 +1,32 @@
 package main
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
+	"vanekt/dental-api/controller"
 )
 
-func configureRouter(r *gin.Engine) {
+func configureRouter(
+	r *gin.Engine,
+	authController *controller.AuthController,
+	patientController *controller.PatientController,
+) {
 	v1 := r.Group("/v1")
 
+	// -------------------------------
 	auth := v1.Group("/auth").Use()
-	auth.GET("/login", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "login",
-		})
-	})
-	auth.GET("/logout", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "logout",
-		})
-	})
-	auth.GET("/check", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "check",
-		})
-	})
 
+	loginHandler := authController.Login()
+	auth.GET("/login", loginHandler)
+
+	logoutHandler := authController.Logout()
+	auth.GET("/logout", logoutHandler)
+
+	// -------------------------------
 	patients := v1.Group("/patients")
-	patients.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "patients",
-		})
-	})
-	patients.GET("/:id", func(c *gin.Context) {
-		id := c.Param("id")
-		c.JSON(200, gin.H{
-			"message": fmt.Sprintf("patient id: %s", id),
-		})
-	})
+
+	patientsHandler := patientController.GetList()
+	patients.GET("/", patientsHandler)
+
+	patientHandler := patientController.GetById()
+	patients.GET("/:id", patientHandler)
 }
