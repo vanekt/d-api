@@ -10,7 +10,7 @@ type PatientController struct {
 	logger *logging.Logger
 }
 
-func NewParientController(logger *logging.Logger) *PatientController {
+func NewPatientController(logger *logging.Logger) *PatientController {
 	return &PatientController{logger}
 }
 

@@ -12,7 +12,7 @@ func main() {
 	logger := NewLogger("dental-api", logging.DEBUG)
 
 	authController := controller.NewAuthController(logger)
-	patientController := controller.NewParientController(logger)
+	patientController := controller.NewPatientController(logger)
 
 	r := gin.Default()
 	configureRouter(r, authController, patientController)
