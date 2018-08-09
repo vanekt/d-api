@@ -1,8 +1,10 @@
 package controller
 
 import (
+	"database/sql"
 	"github.com/gin-gonic/gin"
 	"github.com/op/go-logging"
+	"net/http"
 	"vanekt/dental-api/model"
 )
 
@@ -19,8 +21,13 @@ func (c *AuthController) Login() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		user, err := c.userModel.GetUserByLogin("admin")
 		if err != nil {
-			c.logger.Error("AuthController Login: ", err.Error())
-			ctx.JSON(500, gin.H{
+			if err == sql.ErrNoRows {
+				ctx.JSON(http.StatusNotFound, gin.H{
+					"error": "Not found",
+				})
+				return
+			}
+			ctx.JSON(http.StatusInternalServerError, gin.H{
 				"error": "Internal Server Error",
 			})
 			return
@@ -28,7 +35,7 @@ func (c *AuthController) Login() gin.HandlerFunc {
 
 		c.logger.Debug("User: ", user)
 
-		ctx.JSON(200, gin.H{
+		ctx.JSON(http.StatusOK, gin.H{
 			"message": "login",
 		})
 		return
@@ -37,7 +44,7 @@ func (c *AuthController) Login() gin.HandlerFunc {
 
 func (c *AuthController) Logout() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		ctx.JSON(200, gin.H{
+		ctx.JSON(http.StatusOK, gin.H{
 			"message": "logout",
 		})
 		return

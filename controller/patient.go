@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/op/go-logging"
+	"net/http"
 )
 
 type PatientController struct {
@@ -16,7 +17,7 @@ func NewPatientController(logger *logging.Logger) *PatientController {
 
 func (c *PatientController) GetList() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		ctx.JSON(200, gin.H{
+		ctx.JSON(http.StatusOK, gin.H{
 			"message": "patients",
 		})
 	}
@@ -25,7 +26,7 @@ func (c *PatientController) GetList() gin.HandlerFunc {
 func (c *PatientController) GetById() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		id := ctx.Param("id")
-		ctx.JSON(200, gin.H{
+		ctx.JSON(http.StatusOK, gin.H{
 			"message": fmt.Sprintf("patient id: %s", id),
 		})
 	}
