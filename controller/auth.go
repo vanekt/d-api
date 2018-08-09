@@ -17,13 +17,16 @@ func NewAuthController(logger *logging.Logger, userModel *model.UserModel) *Auth
 
 func (c *AuthController) Login() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		err := c.userModel.GetUserByLogin()
+		user, err := c.userModel.GetUserByLogin("admin")
 		if err != nil {
+			c.logger.Error("AuthController Login: ", err.Error())
 			ctx.JSON(500, gin.H{
-				"error": err.Error(),
+				"error": "Internal Server Error",
 			})
 			return
 		}
+
+		c.logger.Debug("User: ", user)
 
 		ctx.JSON(200, gin.H{
 			"message": "login",
